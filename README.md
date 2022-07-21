@@ -16,5 +16,5 @@ docker push ghcr.io/sindbach/flow-executor-nodejs:latest
 ## Execute
 
 ```sh
-./executor.sh "mongodb://host.docker.internal:27017" 
+./executor.sh "mongodb://host.docker.internal:27017" <GRAPH_ID> <NODE_ID>
 ```
