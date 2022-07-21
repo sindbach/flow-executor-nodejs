@@ -3,6 +3,8 @@ const assert = require('assert');
 
 // Connection URL
 const uri = process.env.MONGODB_URI;
+const graphId = process.env.GRAPH_ID; 
+const nodeId = process.env.NODE_ID; 
 const client = new MongoClient(uri, {useUnifiedTopology:true});
 
 // Database Name
