@@ -1,0 +1,14 @@
+{
+  "name": "flow-nodejs",
+  "version": "1.0.0",
+  "description": "Flow executor with Node.JS",
+  "main": "wrapper.js",
+  "scripts": {
+    "wrapper": "node ./wrapper.js"
+  },
+  "author": "",
+  "private": true,
+  "dependencies": {
+    "mongodb": "^4.8.0"
+  }
+}
