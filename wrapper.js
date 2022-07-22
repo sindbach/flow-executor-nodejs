@@ -52,13 +52,13 @@ async function run() {
     } catch (err){
       console.error(`Encountered an error while retrieving ports values: ${err}`);
     }
+    let AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
     try {
-      let fn = Function("ports", node.code + "Node(ports);"); 
-      fn(ports);
+      let fn = new AsyncFunction("ports", "MongoClient", node.code + "; await Node(ports, MongoClient);"); 
+      await fn(ports, MongoClient);
     } catch (err){
       console.error(`Encountered an error while executing node: ${err}`);
     }
-    console.log(node);
     try {
       if (node.portout === null) {
         node.portout = {};
@@ -68,6 +68,7 @@ async function run() {
         let port = node.ports.find(port => port.name === listOfPortOuts[i]);
         node.portout[port.id] = ports.out[listOfPortOuts[i]];
       }
+      console.log(node.portout);
       let result = await collection.updateOne({"graphid": graphId, "id": nodeId}, {"$set":{"portout": node.portout}}); 
       console.log(JSON.stringify(result));
     } catch (err) {
